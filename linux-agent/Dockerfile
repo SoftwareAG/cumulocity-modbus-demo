@@ -1,27 +1,29 @@
-from ubuntu:latest
+FROM ubuntu:latest
 RUN apt update
 RUN apt install build-essential
 RUN apt install liblua5.3-dev libcurl4-gnutls-dev
 RUN apt install libmodbus-dev lua-socket
 RUN apt install git
 
+WORKDIR /app
 RUN git clone https://github.com/SoftwareAG/cumulocity-sdk-c.git
 RUN cd cumulocity-sdk-c
 RUN git submodule init
 RUN git submodule update
-RUN cp common.mk init.mk //change lua to 5.3
+COPY sdk.mk /app/cumulocity-sdk-c/init.mk
 RUN cp Makefile.template Makefile
+RUN make
 
-cd basic tedge_agent_0
+RUN cd /app
 RUN git clone  https://github.com/SoftwareAG/cumulocity-agents-linux.git
 
 
-export C8Y_LIB_PATH=/cumulocity-sdk-c
-cd cumulocity-agents-linux
-cp -rP $C8Y_LIB_PATH/lib $C8Y_LIB_PATH/bin .
+RUN export C8Y_LIB_PATH=/app/cumulocity-sdk-c
+RUN cd cumulocity-agents-linux
+RUN cp -rP $C8Y_LIB_PATH/lib $C8Y_LIB_PATH/bin .
 
-//change makefile to lua53
-//Makefile Plugin Modbus=1
+COPY agent.mk /app/cumulocity-agents-linux/Makefile
+RUN make install
 
-//configure agent file
-make install
+COPY cumulocity-agent.conf /usr/share/cumulocity-agent/cumulocity-agent.conf
+

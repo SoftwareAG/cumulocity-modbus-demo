@@ -1,4 +1,4 @@
-PLUGIN_MODBUS:=0
+PLUGIN_MODBUS:=1
 BUILD:=debug
 
 SRC_DIR:=src
