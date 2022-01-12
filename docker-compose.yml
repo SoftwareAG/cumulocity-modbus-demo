@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  modbusserver:
+    build:
+      context: ./modbus-device
+    ports:
+      - "502:502"
+  linux_agent:
+    build:
+      context: ./linux-agent
