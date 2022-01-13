@@ -17,3 +17,36 @@ These tools are provided as-is and without warranty or support. They do not cons
 Contact us at [TECHcommunity](mailto:technologycommunity@softwareag.com?subject=Github/SoftwareAG) if you have any questions.
 
 ## Getting started
+
+Simply start via:
+
+```bash
+git clone URL
+cd cumulocity-modbus-demo
+docker-compose up 
+```
+
+There will be two containers ramped up:
+
+1. The linux agent that contains the modbus functionality
+2. A Modbus simulator, that simulates a power
+
+
+## Device Registration
+
+On Cumulocity side you have to register the device in your tenant. In the config.ini you have to use an identifier such as the serial number or mac address.
+This serial number will be used for the registration purpose. You can find it within the cumulocity-agent.conf under the key. Please change at the beginning.
+
+![Devie Registration](https://recordit.co/NbNj1VdQu4.gif)
+
+
+## Device Protocol
+
+
+## Device Configuration Modbus
+
+Within the device management Application of Cumulocity you will find the tab "ModBus" after the device was registred successfully.
+
+![Devie Registration](./pics/ModBus-dm.png)
+
+Within here, you can add an TCP Device. Please 
