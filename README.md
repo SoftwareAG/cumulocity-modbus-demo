@@ -25,7 +25,7 @@ git clone URL
 cd cumulocity-modbus-demo
 ```
 In the docker-compose.yml you have to use an identifier such as the serial number or mac address. This serial number will be used for the registration purpose and must be unique across all tenants. Please change at the beginning.
-You can also change the cumulocity base url if needed.
+You can also change the Cumulocity base url if needed.
 
 There will be two containers ramped up:
 
@@ -35,30 +35,31 @@ There will be two containers ramped up:
 Start both containers with:
 
 ```bash
-doccker-compose -up
+docker-compose -up
 ```
 
 ## Device Registration
 
 On Cumulocity side you have to register the device in your tenant. 
 
-![Devie Registration](https://recordit.co/NbNj1VdQu4.gif)
+![Device Registration](https://recordit.co/NbNj1VdQu4.gif)
 
 
 ## Device Protocol
 
-The modbus server sends random integer measurements via the holding register from Bit 0 to Bit 16. To read these values with the agent and send them as measurements to Cumulocity, the agent must be remotely configured in cumulocity.
+The modbus server sends random integer measurements via the holding register from Bit 0 to Bit 16. To read these values with the agent and send them as measurements to Cumulocity, the agent must be remotely configured in Cumulocity.
 
 New fieldbus device protocols can be created in the Device protocols page which is opened from the Device types menu in the navigator. Create a new modbus device protocol and configure it, as shown below:
 
 ![Device protocol](./pics/ModBus-protocol.png)
 
-Further information on how to read and sed events, alarms from modbus devices can be found in the Cumulocity IoT documentation. 
+Further information on how to read and send events and alarms from modbus devices can be found in the Cumulocity IoT documentation. 
 
 ## Device Configuration Modbus
 
-Within the device management Application of Cumulocity you will find the tab "ModBus" after the device was registred successfully.
+Within the device management Application of Cumulocity you will find the tab "ModBus" after the device was registered successfully.
 
-![Devie Registration](./pics/ModBus-dm.png)
+![Device Registration](./pics/ModBus-dm.png)
 
-Within here, you can add an TCP Device. Please add here you local ip adress of the docker host. Since the agent is running in a docker container 127.0.0.1 will not work. On windwos you can display the local network adress via the command line with **ipconfig**.
+Within here, you can add a TCP Device. The address of the modbus server is **0**.
+For the ip address of the modbus server use you local ip address. Since the agent is running in a docker container 127.0.0.1 will not work for the docker host. On windows you can display the local network address via the command line with *ipconfig*.
