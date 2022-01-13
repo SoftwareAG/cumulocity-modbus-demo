@@ -9,6 +9,8 @@ RUN apt install -y git
 RUN apt update -y
 RUN apt upgrade -y
 
+RUN locale-gen en_US.UTF-8 # Fix locale errors
+
 WORKDIR /app
 RUN git clone https://github.com/SoftwareAG/cumulocity-sdk-c.git
 WORKDIR /app/cumulocity-sdk-c
