@@ -8,3 +8,6 @@ services:
   linux_agent:
     build:
       context: ./linux-agent
+      args:
+        BASE_URL: "eu-latest.cumulocity.com"
+        DEVICE_ID: "asdf1234"
