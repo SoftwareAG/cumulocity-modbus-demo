@@ -1,5 +1,5 @@
 # Cumulocity Modbus Demo
-Example implementation of a modbus device in **Cumulocity IoT**. The demo device sends random values via modbus TCP. In the following it will be shown how to easily connect and read the values from the device with Cumulocity IoT.
+Example implementation of a modbus device in **Cumulocity IoT**. The demo device sends random values via modbus TCP. In the following you will see how to easily connect and read the values from the device with Cumulocity IoT.
 
 Cumulocity is an IoT platform that enables rapid connections of many, many different devices and applications. It allows you to monitor and respond to IoT data in real time and to spin up this capability in minutes. More information on Cumulocity IoT and how to start a free trial can be found [here](https://www.softwareag.cloud/site/product/cumulocity-iot.html#/).
 
@@ -24,13 +24,13 @@ Simply start via:
 git clone URL
 cd cumulocity-modbus-demo
 ```
-In the docker-compose.yml you have to use an identifier such as the serial number or mac address. This serial number will be used for the registration purpose and must be unique across all tenants. Please change at the beginning.
+In the docker-compose.yml you have to use an identifier such as the serial number or mac address. This serial number will be used for the registration purpose and must be unique across all tenants. Please change it at the beginning.
 You can also change the Cumulocity base url if needed.
 
 There will be two containers ramped up:
 
-1. The linux agent that contains the modbus functionality
-2. A Modbus simulator, that simulates a power
+1. The linux agent that contains the Modbus functionality
+2. A Modbus simulator, that simulates random values
 
 Start both containers with:
 
@@ -47,19 +47,20 @@ On Cumulocity side you have to register the device in your tenant.
 
 ## Device Protocol
 
-The modbus server sends random integer measurements via the holding register from Bit 0 to Bit 16. To read these values with the agent and send them as measurements to Cumulocity, the agent must be remotely configured in Cumulocity.
+The Modbus server sends random integer measurements via the holding register from Bit 0 to Bit 16. To read these values with the agent and send them as measurements to Cumulocity, the agent must be remotely configured in Cumulocity.
 
-New fieldbus device protocols can be created in the Device protocols page which is opened from the Device types menu in the navigator. Create a new modbus device protocol and configure it, as shown below:
+New fieldbus device protocols can be created in the Device protocols page which is opened from the Device types menu in the navigator. Create a new Modbus device protocol and configure it, as shown below:
 
 ![Device protocol](./pics/ModBus-protocol.png)
 
-Further information on how to read and send events and alarms from modbus devices can be found in the Cumulocity IoT documentation. 
+Further information on how to read and send events and alarms from Modbus devices can be found in the [Cumulocity IoT documentation](https://cumulocity.com/guides/protocol-integration/cloud-fieldbus/).
+
 
 ## Device Configuration Modbus
 
-Within the device management Application of Cumulocity you will find the tab "ModBus" after the device was registered successfully.
+Within the device management Application of Cumulocity you will find the tab "Modbus" after the device/agent was registered successfully.
 
 ![Device Registration](./pics/ModBus-dm.png)
 
-Within here, you can add a TCP Device. The address of the modbus server is **0**.
-For the ip address of the modbus server use you local ip address. Since the agent is running in a docker container 127.0.0.1 will not work for the docker host. On windows you can display the local network address via the command line with *ipconfig*.
+Within here, you can add a TCP Device. The address of the Modbus server is **0**.
+For the ip address of the Modbus server use your local ip address. Since the agent is running in a docker container 127.0.0.1 will not work for the docker host. On windows you can display the local network address via the command line with *ipconfig*.
