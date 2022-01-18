@@ -24,7 +24,7 @@ Simply start via:
 git clone URL
 cd cumulocity-modbus-demo
 ```
-In the docker-compose.yml you have to use an identifier such as the serial number or mac address. This serial number will be used for the registration purpose and must be unique across all tenants. Please change it at the beginning.
+In the docker-compose.yml you have to use an identifier such as the serial number or mac address. This serial number will be used for the registration purpose and must be unique across all tenants. Please change it at the beginning. Find it within the compose file in the agent section.
 You can also change the Cumulocity base url if needed.
 
 There will be two containers ramped up:
@@ -35,7 +35,7 @@ There will be two containers ramped up:
 Start both containers with:
 
 ```bash
-docker-compose -up
+docker-compose up
 ```
 
 ## Device Registration
@@ -47,7 +47,7 @@ On Cumulocity side you have to register the device in your tenant.
 
 ## Device Protocol
 
-The Modbus server sends random integer measurements via the holding register from Bit 0 to Bit 16. To read these values with the agent and send them as measurements to Cumulocity, the agent must be remotely configured in Cumulocity.
+The Modbus server sends random integer measurements via the holding register from Bit 0 to Bit 16. To read these values with the agent and send them as measurements to Cumulocity, the agent must be remotely configured in Cumulocity. This conecpt is called Cloud Fieldbus. You can find additional infos about that in the [Cumulocity IoT documentation](https://cumulocity.com/guides/protocol-integration/overview/) 
 
 New fieldbus device protocols can be created in the Device protocols page which is opened from the Device types menu in the navigator. Create a new Modbus device protocol and configure it, as shown below:
 
@@ -58,7 +58,7 @@ Further information on how to read and send events and alarms from Modbus device
 
 ## Device Configuration Modbus
 
-Within the device management Application of Cumulocity you will find the tab "Modbus" after the device/agent was registered successfully.
+Within the device management application of Cumulocity you will find the tab "Modbus" after the device/agent was registered successfully.
 
 ![Device Registration](./pics/ModBus-dm.png)
 
