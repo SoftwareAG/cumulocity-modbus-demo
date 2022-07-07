@@ -10,4 +10,4 @@ services:
       context: ./linux-agent
       args:
         BASE_URL: "eu-latest.cumulocity.com"
-        DEVICE_ID: "asdf1234"
+        DEVICE_ID: "demo_felix_modus_1"

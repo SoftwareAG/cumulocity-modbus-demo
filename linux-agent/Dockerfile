@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 RUN apt update
 ENV TZ=Europe/Berlin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -8,6 +8,7 @@ RUN apt install -y libmodbus-dev lua-socket
 RUN apt install -y git
 RUN apt update -y
 RUN apt upgrade -y
+RUN apt install -y locales
 
 RUN locale-gen en_US.UTF-8 # Fix locale errors
 
