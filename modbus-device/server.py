@@ -2,7 +2,7 @@
 import logging
 from threading import Thread
 from pymodbus.constants import Endian
-from pymodbus.server.sync import StartTcpServer as StartServer
+from pymodbus.server import StartTcpServer as StartServer
 from pymodbus.datastore import ModbusSlaveContext, ModbusServerContext
 from pymodbus.payload import BinaryPayloadBuilder
 
@@ -43,6 +43,6 @@ if __name__ == "__main__":
     writer.start()
     #Start Modbus Server
     logger.info('Starting Modbus Server')
-    StartServer(context, address=("0.0.0.0", 502))
+    StartServer(context=context, address=("0.0.0.0", 502))
     
     
